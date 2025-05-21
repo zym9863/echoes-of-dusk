@@ -176,7 +176,7 @@ export class Terrain {
   }
   
   public dispose(): void {
-    this.terrain.traverse((object) => {
+    this.terrain.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {
         object.geometry.dispose();
       }

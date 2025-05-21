@@ -142,7 +142,7 @@ export class SceneManager {
   private updateLighting(time: number): void {
     // Adjust scene ambient light based on time
     const ambientIntensity = Math.max(0.1, 1 - Math.abs(time - 0.5) * 1.5);
-    this.scene.remove(...this.scene.children.filter(child => child instanceof THREE.AmbientLight));
+    this.scene.remove(...this.scene.children.filter((child: THREE.Object3D) => child instanceof THREE.AmbientLight));
 
     const ambientLight = new THREE.AmbientLight(
       time < 0.5 ? 0xffffff : (time < 0.8 ? 0xffa366 : 0x334466),
@@ -151,7 +151,7 @@ export class SceneManager {
     this.scene.add(ambientLight);
 
     // Adjust directional light (sun/moon)
-    this.scene.remove(...this.scene.children.filter(child => child instanceof THREE.DirectionalLight));
+    this.scene.remove(...this.scene.children.filter((child: THREE.Object3D) => child instanceof THREE.DirectionalLight));
 
     const sunPosition = new THREE.Vector3(
       Math.cos((time - 0.25) * Math.PI * 2) * 100,

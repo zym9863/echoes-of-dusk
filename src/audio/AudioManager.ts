@@ -26,17 +26,17 @@ export class AudioManager {
     // Load ambient sound (waves, wind, etc.)
     this.audioLoader.load(
       '/ambient.mp3',
-      (buffer) => {
+      (buffer: AudioBuffer) => {
         if (this.ambientSound) {
           this.ambientSound.setBuffer(buffer);
           this.ambientSound.setLoop(true);
           this.ambientSound.setVolume(0);
         }
       },
-      (xhr) => {
+      (xhr: ProgressEvent) => {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error loading ambient sound:', error);
         // Create a fallback audio buffer if loading fails
         this.createFallbackAmbientSound();
@@ -50,17 +50,17 @@ export class AudioManager {
     // Load lighthouse sound (mechanical sound, bell, etc.)
     this.audioLoader.load(
       '/lighthouse.mp3',
-      (buffer) => {
+      (buffer: AudioBuffer) => {
         if (this.lighthouseSound) {
           this.lighthouseSound.setBuffer(buffer);
           this.lighthouseSound.setLoop(false);
           this.lighthouseSound.setVolume(0);
         }
       },
-      (xhr) => {
+      (xhr: ProgressEvent) => {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error loading lighthouse sound:', error);
         // Create a fallback audio buffer if loading fails
         this.createFallbackLighthouseSound();

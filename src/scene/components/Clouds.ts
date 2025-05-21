@@ -164,7 +164,7 @@ export class Clouds {
   }
   
   public dispose(): void {
-    this.clouds.traverse((object) => {
+    this.clouds.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {
         object.geometry.dispose();
       }

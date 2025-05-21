@@ -193,13 +193,13 @@ export class Lighthouse {
   }
   
   public dispose(): void {
-    this.lighthouse.traverse((object) => {
+    this.lighthouse.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {
         object.geometry.dispose();
         if (Array.isArray(object.material)) {
-          object.material.forEach(material => material.dispose());
+          object.material.forEach((material: THREE.Material) => material.dispose());
         } else {
-          object.material.dispose();
+          (object.material as THREE.Material).dispose();
         }
       }
     });
